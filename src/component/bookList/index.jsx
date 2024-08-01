@@ -6,13 +6,14 @@ function BookList() {
   const [books, setBooks] = useState(Book);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBooks, setFilteredBooks] = useState(Book);
-
+  const dueDate = Math.floor(Math.random() * 30) + 1;
   const ontoggle = (index) => {
     setBooks((prevBooks) =>
       prevBooks.map((book, i) =>
         i === index
           ? {
               ...book,
+              dueDate: book.status === "Checkout" ? "none" : dueDate,
               status: book.status === "Available" ? "Checkout" : "Available",
             }
           : book
